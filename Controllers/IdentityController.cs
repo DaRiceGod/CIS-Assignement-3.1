@@ -24,11 +24,16 @@ namespace MyDotNetCoreMVC.Controllers
             
             Random rng = new Random();
             People p = new("John Smith", rng.Next());
+            Permissions permissions = new Permissions();
+            permissions.tags = new List<string>{ "Technical Support", "Network Infra", "SWE" };
             Identity createdIdentity = new(true, "IT", "Manager", p);
+            createdIdentity.Perms.Clear();
+            createdIdentity.Perms.Add(permissions);
             People r = new();
             r.Name = "Jane Doe";
             r.ID = 1;
             Identity updatedIdentity = new(true, "Executive", "CEO", r);
+
             result.Add(defaultidentity);
             result.Add(createdIdentity);
             result.Add(updatedIdentity);
